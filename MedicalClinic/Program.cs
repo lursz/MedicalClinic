@@ -1,62 +1,61 @@
-﻿
+﻿using MedicalClinic.Core;
 using MedicalClinic.DataBase;
 using MedicalClinic.DataBase.Connection;
 using MedicalClinic.DataBase.Models;
-using Microsoft.EntityFrameworkCore;
+using MedicalClinic.Exceptions;
 
 namespace MedicalClinic;
 
-static class Program
+internal static class Program
 {
     public static void Main(string[] args)
     {
-        var context = new DataBase.Context(ConnString.DbConnectionString);
+        var context = new Context(ConnString.DbConnectionString);
         DbHandler.EnsureCreatedDB();
         DbHandler.MigrateDB();
-        DbHandler.Create(new Patient{Id = 1, FirstName = "Jan", LastName = "Kowalski", PESEL = "12345678901", Gender = "male", Email = "email", City = "city", Street = "street", ZipCode = "zipCode"});   
+        var patient = new Patient();
 
-        
-        char input_key = ' ';
-
-        do {
-            Console.WriteLine("Customers database main menu");
-            Console.WriteLine("[a] Add customer");
-            Console.WriteLine("[e] Edit customer");
-            Console.WriteLine("[d] Delete customer");
-            Console.WriteLine("[s] Search customers");
-            Console.WriteLine("[l] List all customers");
-            Console.WriteLine("[v] Save database to file");
-            Console.WriteLine("[r] Load database from file");
-            Console.WriteLine("[c] Clear database");
+        var inputNum = 0;
+        do
+        {
+            Console.WriteLine("Patients database main menu");
+            Console.WriteLine("[1] List all customers");
+            Console.WriteLine("[2] Add random patient");
+            Console.WriteLine("[3] Add customer");
+            Console.WriteLine("[4] Edit customer");
+            Console.WriteLine("[5] Delete customer");
+            Console.WriteLine("[6] Search customers");
+            Console.WriteLine("[6] Clear database");
             Console.WriteLine("[q] Quit");
-        
-            input_key = Console.ReadKey().KeyChar;
-        
-            try {
-                switch (input_key) {
-                    case 'a':
-                        AddNewCustomerPrompt(database);
+
+            inputNum = Console.ReadKey().KeyChar;
+            Console.WriteLine(inputNum);
+            Console.WriteLine("\n");
+
+            try
+            {
+                switch (inputNum)
+                {
+                    case '1':
+                        PromptHub.ListAllPatients();
                         break;
-                    case 'e':
-                        EditCustomerPrompt(database);
+                    case '2':
+                        PromptHub.AddRandomPatientPrompt();
                         break;
-                    case 'd':
-                        DeleteCustomerPrompt(database);
+                    case '3':
+                        PromptHub.AddNewPatientPrompt();
                         break;
-                    case 's':
-                        SearchCustomersPrompt(database);
+                    case '4':
+                        PromptHub.EditPatientPrompt();
                         break;
-                    case 'l':
-                        ListAllCustomers(database);
+                    case '5':
+                        PromptHub.DeletePatientPrompt();
                         break;
-                    case 'v':
-                        SaveDatabaseToFile(database);
-                        break;
-                    case 'r':
-                        LoadDatabaseFromFile(database);
+                    case '6':
+                        PromptHub.SearchForPatient(patient);
                         break;
                     case 'c':
-                        database.Clear();
+                        DbHandler.Clear();
                         break;
                     case 'q':
                         break;
@@ -64,16 +63,15 @@ static class Program
                         Console.WriteLine("Invalid input");
                         break;
                 }
-            } catch (BadIdException e) {
+            }
+            catch (BadIdException e)
+            {
                 Console.WriteLine(e.Message);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("An error occurred: " + e.Message);
             }
-        } while(input_key != 'q');
-        
-        
-        
-        
-        
+        } while (inputNum != 'q');
     }
 }

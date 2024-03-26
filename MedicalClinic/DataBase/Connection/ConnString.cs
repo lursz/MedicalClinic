@@ -5,13 +5,14 @@ namespace MedicalClinic.DataBase.Connection;
 public class ConnString
 {
     private const string _path = "DataBase/Connection/db.json";
-    public static string DbConnectionString { get; private set; }
 
 
     static ConnString()
     {
         InitializeConnectionStringList();
     }
+
+    public static string DbConnectionString { get; private set; }
 
     private static void InitializeConnectionStringList()
     {
@@ -28,8 +29,6 @@ public class ConnString
         }
     }
 }
-
-
 
 public class DBConfiguration
 {
