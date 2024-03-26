@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MedicalClinic.DataBase.Models;
 
-public class User
+public class Patient
 {
     [Key]
     public int Id { get; set; }

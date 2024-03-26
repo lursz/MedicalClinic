@@ -5,7 +5,7 @@ namespace MedicalClinic.DataBase;
 
 public class Context : DbContext
 {
-    public DbSet<User> Users { get; set; }
+    public DbSet<Patient> Patients { get; set; }
     private readonly string _connectionString;
 
     public Context(string connectionString)
