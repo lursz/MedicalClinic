@@ -17,16 +17,16 @@ internal static class Program
         DbHandler.MigrateDB();
         var patient = new Patient();
 
+        Application.Init();
+        Application.Run(new MedicalClinic.MainGUI());
+        Application.Shutdown();
         
-        
-        Application.Run<MainWindow> ();
-
-        System.Console.WriteLine ($"Username: {((MainWindow)Application.Top).usernameText.Text}");
-
-        // Before the application exits, reset Terminal.Gui for clean shutdown
-        Application.Shutdown ();
-        
-        
+        // Application.Run<MainWindow> ();
+        // System.Console.WriteLine ($"Username: {((MainWindow)Application.Top).usernameText.Text}");
+        // // Before the application exits, reset Terminal.Gui for clean shutdown
+        // Application.Shutdown ();
+        //
+        //
         
         
         

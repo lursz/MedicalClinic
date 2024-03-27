@@ -1,4 +1,5 @@
 using MedicalClinic.DataBase.Connection;
+using MedicalClinic.DataBase.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalClinic.DataBase;
@@ -50,4 +51,10 @@ public static class DbHandler
     {
         return _context.Patients.Select(p => p.Id).ToList();
     }
+    
+    public static List<Patient> GetPatients()
+    {
+        return _context.Patients.ToList();
+    }
+    
 }

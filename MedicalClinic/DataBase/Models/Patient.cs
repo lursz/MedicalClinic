@@ -22,7 +22,7 @@ public class Patient
         City = city;
         Street = street;
         ZipCode = checkZipCode(zipCode) ? zipCode : throw new ArgumentException("Invalid zip code format");
-        Gender = PESEL[10] % 2 == 0 ? 'F' : 'M';
+        Gender = PESEL[10] % 2 == 0 ? "Female" : "Male";
     }
 
     [Key]
@@ -35,7 +35,7 @@ public class Patient
 
     [Required] public string PESEL { get; set; }
 
-    public char Gender { get; set; }
+    public string Gender { get; set; }
 
     [Required] public string Email { get; set; }
 
@@ -68,5 +68,11 @@ public class Patient
     {
         var pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
         return Regex.IsMatch(email, pattern);
+    }
+    
+    public static List<String> returnNamesOfAllColumns()
+    {
+        return new List<string>
+            { "Id", "FirstName", "LastName ", "PESEL", "Gender", "Email", "City", "Street", "ZipCode" };
     }
 }

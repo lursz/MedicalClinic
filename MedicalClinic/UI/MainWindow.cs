@@ -9,7 +9,7 @@ public class MainWindow : Window
 
     public MainWindow()
     {
-        Title = "Example App (Ctrl+Q to quit)";
+        Title = "Medical Clinic (Ctrl+Q to quit)";
 
         // Create input components and labels
         var usernameLabel = new Label()
