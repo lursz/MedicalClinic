@@ -52,6 +52,12 @@ public class Patient
             $"Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, PESEL: {PESEL}, Gender: {Gender}, Email: {Email}, City: {City}, Street: {Street}, ZipCode: {ZipCode}";
     }
 
+    public string ToNewLineString()
+    {
+        return
+            $"Id: {Id}\nFirstName: {FirstName}\nLastName: {LastName}\nPESEL: {PESEL}\nGender {Gender} \nEmail: {Email}\nCity: {City}\nStreet: {Street}\nZipCode: {ZipCode}";
+    }
+
     private bool checkZipCode(string zipCode)
     {
         var pattern = @"^\d{2}-\d{3}$";

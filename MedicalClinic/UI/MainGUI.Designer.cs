@@ -15,71 +15,76 @@ namespace MedicalClinic {
     
     public partial class MainGUI : Terminal.Gui.Window {
         
+        private Terminal.Gui.ColorScheme tgDefault;
+        
+        private Terminal.Gui.ColorScheme greenOnBlack;
+        
+        private Terminal.Gui.ColorScheme blueOnBlack;
+        
+        private Terminal.Gui.ColorScheme redOnBlack;
+        
         private Terminal.Gui.ColorScheme greyOnBlack;
         
         private Terminal.Gui.ColorScheme custom;
         
-        private Terminal.Gui.ColorScheme blueOnBlack;
-        
-        private Terminal.Gui.ColorScheme tgDefault;
-        
-        private Terminal.Gui.ColorScheme redOnBlack;
+        private Terminal.Gui.Button buttonHelp;
         
         private Terminal.Gui.Button buttonQuit;
         
+        private Terminal.Gui.Label searchBarLabel;
+        
         private Terminal.Gui.TextField searchBar;
+        
+        private Terminal.Gui.Button buttonHelp2;
         
         private Terminal.Gui.Label label_PatientList;
         
         private Terminal.Gui.Label label_PatientList2;
         
-        private Terminal.Gui.Label label_patientInfo;
+        private Terminal.Gui.Button buttonAdd;
+        
+        private Terminal.Gui.Button buttonAddRandom;
+        
+        private Terminal.Gui.Button buttonRemoveAll;
         
         private Terminal.Gui.TableView patientList;
         
-        private Terminal.Gui.TableView tableView;
-        
-        private Terminal.Gui.MenuBar menuBar;
-        
-        private Terminal.Gui.MenuBarItem fileMenu;
-        
-        private Terminal.Gui.MenuItem quitMenuItem;
-        
-        private Terminal.Gui.MenuItem menuItem;
-        
-        private Terminal.Gui.MenuItem menuItem2;
-        
-        private Terminal.Gui.MenuItem menuItem3;
-        
-        private Terminal.Gui.MenuItem menuItem4;
-        
-        private Terminal.Gui.MenuBarItem addPatientMenu;
-        
-        private Terminal.Gui.MenuItem addCustomPatientMenuItem;
-        
-        private Terminal.Gui.MenuItem addRandomMenuItem;
-        
-        private Terminal.Gui.MenuBarItem editPatientMenu;
-        
-        private Terminal.Gui.MenuItem editMeMenuItem;
-        
-        private Terminal.Gui.MenuItem editByPESELMenuItem;
-        
-        private Terminal.Gui.MenuItem editByMailMenuItem;
-        
-        private Terminal.Gui.MenuBarItem deletePatientMenu;
-        
-        private Terminal.Gui.MenuItem editMeMenuItem2;
-        
         private void InitializeComponent() {
-            this.menuBar = new Terminal.Gui.MenuBar();
-            this.tableView = new Terminal.Gui.TableView();
             this.patientList = new Terminal.Gui.TableView();
-            this.label_patientInfo = new Terminal.Gui.Label();
+            this.buttonRemoveAll = new Terminal.Gui.Button();
+            this.buttonAddRandom = new Terminal.Gui.Button();
+            this.buttonAdd = new Terminal.Gui.Button();
             this.label_PatientList2 = new Terminal.Gui.Label();
             this.label_PatientList = new Terminal.Gui.Label();
+            this.buttonHelp2 = new Terminal.Gui.Button();
             this.searchBar = new Terminal.Gui.TextField();
+            this.searchBarLabel = new Terminal.Gui.Label();
             this.buttonQuit = new Terminal.Gui.Button();
+            this.buttonHelp = new Terminal.Gui.Button();
+            this.tgDefault = new Terminal.Gui.ColorScheme();
+            this.tgDefault.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Blue);
+            this.tgDefault.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightCyan, Terminal.Gui.Color.Blue);
+            this.tgDefault.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Black, Terminal.Gui.Color.Gray);
+            this.tgDefault.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.Gray);
+            this.tgDefault.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Brown, Terminal.Gui.Color.Blue);
+            this.greenOnBlack = new Terminal.Gui.ColorScheme();
+            this.greenOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Green, Terminal.Gui.Color.Black);
+            this.greenOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightGreen, Terminal.Gui.Color.Black);
+            this.greenOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Green, Terminal.Gui.Color.Magenta);
+            this.greenOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightGreen, Terminal.Gui.Color.Magenta);
+            this.greenOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
+            this.blueOnBlack = new Terminal.Gui.ColorScheme();
+            this.blueOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.Black);
+            this.blueOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Cyan, Terminal.Gui.Color.Black);
+            this.blueOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.BrightYellow);
+            this.blueOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Cyan, Terminal.Gui.Color.BrightYellow);
+            this.blueOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
+            this.redOnBlack = new Terminal.Gui.ColorScheme();
+            this.redOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Black);
+            this.redOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Black);
+            this.redOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Brown);
+            this.redOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Brown);
+            this.redOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
             this.greyOnBlack = new Terminal.Gui.ColorScheme();
             this.greyOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.DarkGray, Terminal.Gui.Color.Black);
             this.greyOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.DarkGray, Terminal.Gui.Color.Black);
@@ -92,41 +97,33 @@ namespace MedicalClinic {
             this.custom.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Black);
             this.custom.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Black);
             this.custom.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Black);
-            this.blueOnBlack = new Terminal.Gui.ColorScheme();
-            this.blueOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.Black);
-            this.blueOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Cyan, Terminal.Gui.Color.Black);
-            this.blueOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.BrightYellow);
-            this.blueOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Cyan, Terminal.Gui.Color.BrightYellow);
-            this.blueOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
-            this.tgDefault = new Terminal.Gui.ColorScheme();
-            this.tgDefault.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Blue);
-            this.tgDefault.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightCyan, Terminal.Gui.Color.Blue);
-            this.tgDefault.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Black, Terminal.Gui.Color.Gray);
-            this.tgDefault.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.Gray);
-            this.tgDefault.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Brown, Terminal.Gui.Color.Blue);
-            this.redOnBlack = new Terminal.Gui.ColorScheme();
-            this.redOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Black);
-            this.redOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Black);
-            this.redOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Brown);
-            this.redOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Brown);
-            this.redOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
             this.Width = Dim.Fill(0);
             this.Height = Dim.Fill(0);
             this.X = 0;
             this.Y = 0;
             this.Visible = true;
-            this.ColorScheme = this.blueOnBlack;
+            this.ColorScheme = this.tgDefault;
             this.Modal = false;
             this.IsMdiContainer = false;
             this.Border.BorderStyle = Terminal.Gui.BorderStyle.Single;
             this.Border.Effect3D = false;
             this.Border.Effect3DBrush = null;
             this.Border.DrawMarginFrame = true;
-            this.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Title = "Medical Clinic";
+            this.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.Title = "";
+            this.buttonHelp.Width = 8;
+            this.buttonHelp.Height = 1;
+            this.buttonHelp.X = Pos.Percent(90f);
+            this.buttonHelp.Y = 0;
+            this.buttonHelp.Visible = true;
+            this.buttonHelp.Data = "buttonHelp";
+            this.buttonHelp.Text = "Help";
+            this.buttonHelp.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.buttonHelp.IsDefault = false;
+            this.Add(this.buttonHelp);
             this.buttonQuit.Width = 8;
             this.buttonQuit.Height = 1;
-            this.buttonQuit.X = 183;
+            this.buttonQuit.X = Pos.Percent(95f);
             this.buttonQuit.Y = 0;
             this.buttonQuit.Visible = true;
             this.buttonQuit.Data = "buttonQuit";
@@ -134,9 +131,18 @@ namespace MedicalClinic {
             this.buttonQuit.TextAlignment = Terminal.Gui.TextAlignment.Centered;
             this.buttonQuit.IsDefault = false;
             this.Add(this.buttonQuit);
-            this.searchBar.Width = 191;
+            this.searchBarLabel.Width = 10;
+            this.searchBarLabel.Height = 1;
+            this.searchBarLabel.X = 0;
+            this.searchBarLabel.Y = 2;
+            this.searchBarLabel.Visible = true;
+            this.searchBarLabel.Data = "searchBarLabel";
+            this.searchBarLabel.Text = "SearchBar:";
+            this.searchBarLabel.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.searchBarLabel);
+            this.searchBar.Width = Dim.Percent(90f);
             this.searchBar.Height = 1;
-            this.searchBar.X = 0;
+            this.searchBar.X = 10;
             this.searchBar.Y = 2;
             this.searchBar.Visible = true;
             this.searchBar.Secret = false;
@@ -144,6 +150,16 @@ namespace MedicalClinic {
             this.searchBar.Text = "";
             this.searchBar.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Add(this.searchBar);
+            this.buttonHelp2.Width = 8;
+            this.buttonHelp2.Height = 1;
+            this.buttonHelp2.X = Pos.Percent(95f);
+            this.buttonHelp2.Y = 2;
+            this.buttonHelp2.Visible = true;
+            this.buttonHelp2.Data = "buttonHelp2";
+            this.buttonHelp2.Text = "Help";
+            this.buttonHelp2.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.buttonHelp2.IsDefault = false;
+            this.Add(this.buttonHelp2);
             this.label_PatientList.Width = 137;
             this.label_PatientList.Height = 3;
             this.label_PatientList.X = 0;
@@ -153,33 +169,54 @@ namespace MedicalClinic {
             this.label_PatientList.Text = "Patient List";
             this.label_PatientList.TextAlignment = Terminal.Gui.TextAlignment.Centered;
             this.Add(this.label_PatientList);
-            this.label_PatientList2.Width = 137;
+            this.label_PatientList2.Width = Dim.Fill(0);
             this.label_PatientList2.Height = 3;
             this.label_PatientList2.X = 0;
             this.label_PatientList2.Y = 6;
-            this.label_PatientList2.Visible = true;
+            this.label_PatientList2.Visible = false;
             this.label_PatientList2.Data = "label_PatientList2";
             this.label_PatientList2.Text = "Patient List";
             this.label_PatientList2.TextAlignment = Terminal.Gui.TextAlignment.Centered;
             this.Add(this.label_PatientList2);
-            this.label_patientInfo.Width = 52;
-            this.label_patientInfo.Height = 3;
-            this.label_patientInfo.X = 138;
-            this.label_patientInfo.Y = 6;
-            this.label_patientInfo.Visible = true;
-            this.label_patientInfo.Data = "label_patientInfo";
-            this.label_patientInfo.Text = "Patient Informations";
-            this.label_patientInfo.TextAlignment = Terminal.Gui.TextAlignment.Centered;
-            this.Add(this.label_patientInfo);
-            this.patientList.Width = 138;
-            this.patientList.Height = 53;
+            this.buttonAdd.Width = 7;
+            this.buttonAdd.Height = 1;
+            this.buttonAdd.X = 1;
+            this.buttonAdd.Y = 8;
+            this.buttonAdd.Visible = true;
+            this.buttonAdd.Data = "buttonAdd";
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.buttonAdd.IsDefault = false;
+            this.Add(this.buttonAdd);
+            this.buttonAddRandom.Width = 14;
+            this.buttonAddRandom.Height = 1;
+            this.buttonAddRandom.X = 10;
+            this.buttonAddRandom.Y = 8;
+            this.buttonAddRandom.Visible = true;
+            this.buttonAddRandom.Data = "buttonAddRandom";
+            this.buttonAddRandom.Text = "Add random";
+            this.buttonAddRandom.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.buttonAddRandom.IsDefault = false;
+            this.Add(this.buttonAddRandom);
+            this.buttonRemoveAll.Width = 14;
+            this.buttonRemoveAll.Height = 1;
+            this.buttonRemoveAll.X = 26;
+            this.buttonRemoveAll.Y = 8;
+            this.buttonRemoveAll.Visible = true;
+            this.buttonRemoveAll.Data = "buttonRemoveAll";
+            this.buttonRemoveAll.Text = "Remove all";
+            this.buttonRemoveAll.TextAlignment = Terminal.Gui.TextAlignment.Centered;
+            this.buttonRemoveAll.IsDefault = false;
+            this.Add(this.buttonRemoveAll);
+            this.patientList.Width = Dim.Percent(100f);
+            this.patientList.Height = Dim.Percent(85f);
             this.patientList.X = 0;
             this.patientList.Y = 9;
             this.patientList.Visible = true;
             this.patientList.Data = "patientList";
             this.patientList.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.patientList.FullRowSelect = true;
-            this.patientList.Style.AlwaysShowHeaders = false;
+            this.patientList.Style.AlwaysShowHeaders = true;
             this.patientList.Style.ExpandLastColumn = true;
             this.patientList.Style.InvertSelectedCellFirstCharacter = false;
             this.patientList.Style.ShowHorizontalHeaderOverline = true;
@@ -222,103 +259,6 @@ namespace MedicalClinic {
             patientListTable.Columns.Add(patientListTableMyDataColumn4);
             this.patientList.Table = patientListTable;
             this.Add(this.patientList);
-            this.tableView.Width = 53;
-            this.tableView.Height = 53;
-            this.tableView.X = 138;
-            this.tableView.Y = 9;
-            this.tableView.Visible = true;
-            this.tableView.Data = "tableView";
-            this.tableView.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.tableView.FullRowSelect = true;
-            this.tableView.Style.AlwaysShowHeaders = false;
-            this.tableView.Style.ExpandLastColumn = true;
-            this.tableView.Style.InvertSelectedCellFirstCharacter = false;
-            this.tableView.Style.ShowHorizontalHeaderOverline = true;
-            this.tableView.Style.ShowHorizontalHeaderUnderline = true;
-            this.tableView.Style.ShowVerticalCellLines = true;
-            this.tableView.Style.ShowVerticalHeaderLines = true;
-            System.Data.DataTable tableViewTable;
-            tableViewTable = new System.Data.DataTable();
-            System.Data.DataColumn tableViewTableKey;
-            tableViewTableKey = new System.Data.DataColumn();
-            tableViewTableKey.ColumnName = "Key";
-            tableViewTable.Columns.Add(tableViewTableKey);
-            System.Data.DataColumn tableViewTableValue;
-            tableViewTableValue = new System.Data.DataColumn();
-            tableViewTableValue.ColumnName = "Value";
-            tableViewTable.Columns.Add(tableViewTableValue);
-            this.tableView.Table = tableViewTable;
-            this.Add(this.tableView);
-            this.menuBar.Width = 182;
-            this.menuBar.Height = 1;
-            this.menuBar.X = 0;
-            this.menuBar.Y = 0;
-            this.menuBar.Visible = true;
-            this.menuBar.ColorScheme = this.redOnBlack;
-            this.menuBar.Data = "menuBar";
-            this.menuBar.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.fileMenu = new Terminal.Gui.MenuBarItem();
-            this.fileMenu.Title = "File";
-            this.quitMenuItem = new Terminal.Gui.MenuItem();
-            this.quitMenuItem.Title = "Quit";
-            this.quitMenuItem.Data = "quitMenuItem";
-            this.menuItem = new Terminal.Gui.MenuItem();
-            this.menuItem.Title = "";
-            this.menuItem.Data = "menuItem";
-            this.menuItem2 = new Terminal.Gui.MenuItem();
-            this.menuItem2.Title = "";
-            this.menuItem2.Data = "menuItem2";
-            this.menuItem3 = new Terminal.Gui.MenuItem();
-            this.menuItem3.Title = "";
-            this.menuItem3.Data = "menuItem3";
-            this.menuItem4 = new Terminal.Gui.MenuItem();
-            this.menuItem4.Title = "";
-            this.menuItem4.Data = "menuItem4";
-            this.fileMenu.Children = new Terminal.Gui.MenuItem[] {
-                    this.quitMenuItem,
-                    this.menuItem,
-                    this.menuItem2,
-                    this.menuItem3,
-                    this.menuItem4};
-            this.addPatientMenu = new Terminal.Gui.MenuBarItem();
-            this.addPatientMenu.Title = "Add patient";
-            this.addCustomPatientMenuItem = new Terminal.Gui.MenuItem();
-            this.addCustomPatientMenuItem.Title = "Add custom patient";
-            this.addCustomPatientMenuItem.Data = "addCustomPatientMenuItem";
-            this.addRandomMenuItem = new Terminal.Gui.MenuItem();
-            this.addRandomMenuItem.Title = "Add randomized patient";
-            this.addRandomMenuItem.Data = "addRandomMenuItem";
-            this.addPatientMenu.Children = new Terminal.Gui.MenuItem[] {
-                    this.addCustomPatientMenuItem,
-                    this.addRandomMenuItem};
-            this.editPatientMenu = new Terminal.Gui.MenuBarItem();
-            this.editPatientMenu.Title = "Edit patient";
-            this.editMeMenuItem = new Terminal.Gui.MenuItem();
-            this.editMeMenuItem.Title = "Edit by ID";
-            this.editMeMenuItem.Data = "editMeMenuItem";
-            this.editByPESELMenuItem = new Terminal.Gui.MenuItem();
-            this.editByPESELMenuItem.Title = "Edit by PESEL";
-            this.editByPESELMenuItem.Data = "editByPESELMenuItem";
-            this.editByMailMenuItem = new Terminal.Gui.MenuItem();
-            this.editByMailMenuItem.Title = "Edit by mail";
-            this.editByMailMenuItem.Data = "editByMailMenuItem";
-            this.editPatientMenu.Children = new Terminal.Gui.MenuItem[] {
-                    this.editMeMenuItem,
-                    this.editByPESELMenuItem,
-                    this.editByMailMenuItem};
-            this.deletePatientMenu = new Terminal.Gui.MenuBarItem();
-            this.deletePatientMenu.Title = "Delete patient";
-            this.editMeMenuItem2 = new Terminal.Gui.MenuItem();
-            this.editMeMenuItem2.Title = "Edit Me";
-            this.editMeMenuItem2.Data = "editMeMenuItem2";
-            this.deletePatientMenu.Children = new Terminal.Gui.MenuItem[] {
-                    this.editMeMenuItem2};
-            this.menuBar.Menus = new Terminal.Gui.MenuBarItem[] {
-                    this.fileMenu,
-                    this.addPatientMenu,
-                    this.editPatientMenu,
-                    this.deletePatientMenu};
-            this.Add(this.menuBar);
         }
     }
 }

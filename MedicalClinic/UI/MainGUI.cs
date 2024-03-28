@@ -1,37 +1,83 @@
 using System.Data;
 using MedicalClinic.Core;
 using MedicalClinic.DataBase;
-using Terminal.Gui;
 using MedicalClinic.DataBase.Models;
-namespace MedicalClinic;
+using MedicalClinic.UI;
+using Terminal.Gui;
 
-
-public partial class MainGUI
+namespace MedicalClinic
 {
+
+
+    public partial class MainGUI
+    {
 
         public MainGUI()
         {
             SearchSystem searchSystem = new();
-
+            
             InitializeComponent();
-            quitMenuItem.Action = () => Application.RequestStop();
-
+            Title = "Medical Clinic (Ctrl+Q to quit)";
             // Normal print
             PrintTable(DbHandler.GetPatients());
+            
+            // Buttons
+            buttonQuit.Clicked += () => Application.RequestStop();
+            buttonHelp.Clicked += () => MessageBox.ErrorQuery("Help", "This is a simple medical clinic app in retro style. App fully supports both mouse and keyboard and runs smoothly on literally any device", "Ok");
+            buttonHelp2.Clicked += () => MessageBox.ErrorQuery("Help", "Search functionality is based on regex. You can search for specific values in columns by typing: key:{value}. For example: FirstName:{John} PESEL:{[0-9]{11}}", "Ok");
+            buttonAdd.Clicked += () =>
+            {
+                var addPatient = new PatientAdd();
+                addPatient.ShowDialog();
+                PrintTable(DbHandler.GetPatients());
+            };
+            buttonAddRandom.Clicked += () =>
+            {
+                PatientLogic.AddRandomPatientPrompt();
+                PrintTable(DbHandler.GetPatients());
+            };
+            buttonRemoveAll.Clicked += () =>
+            {
+                DbHandler.Clear();
+                PrintTable(DbHandler.GetPatients());
+            };
 
+            
             // searchBar
             searchBar.TextChanging += (query) =>
             {
                 searchSystem.SetRequirements(query.NewText.ToString());
                 PrintTable(searchSystem.Search(DbHandler.GetPatients()));
             };
+
+            
+            // Table Click 
+            patientList.SelectedCellChanged += (args) =>
+            {
+                var selectedPatient = DbHandler.Get<Patient>(int.Parse(patientList.Table.Rows[args.NewRow][0].ToString()));
+                // show prompt with buttons to delete and edit  
+                var dialog = MessageBox.Query(50, 10, "Patient details", selectedPatient.ToNewLineString(), "Edit", "Delete", "Cancel");
+                if (dialog == 0)
+                {
+                    // Edit
+                    var editPatient = new PatientEdit(selectedPatient, selectedPatient);
+                    // editPatient.ShowDialog();
+                    PrintTable(DbHandler.GetPatients());
+                }
+                else if (dialog == 1)
+                {
+                    // Delete
+                    DbHandler.Delete(selectedPatient);
+                    PrintTable(DbHandler.GetPatients());
+                }
+            };
         }
-        
-        
+
+
         void PrintTable(List<Patient> patients)
         {
             var dataTable = new DataTable();
- 
+
             foreach (var columnName in Patient.returnNamesOfAllColumns())
             {
                 var col = new DataColumn();
@@ -47,8 +93,12 @@ public partial class MainGUI
                     patient.City, patient.Street, patient.ZipCode
                 });
             }
+
             patientList.Table = dataTable;
 
         }
+
+    }
+
 
 }

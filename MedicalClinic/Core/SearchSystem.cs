@@ -22,7 +22,7 @@ public class SearchSystem
 
 internal class SearchRequirements
 {
-    private IntRequirement Id { get; } = new();
+    private StringRequirement Id { get; } = new();
     private StringRequirement FirstName { get; } = new();
     private StringRequirement LastName { get; } = new();
     private StringRequirement PESEL { get; } = new();
@@ -82,35 +82,13 @@ internal class SearchRequirements
             catch
             {
             }
-
-        foreach (Match match in intMatches)
-            try
-            {
-                var key = match.Groups[1].Value;
-
-                var lowerExists = match.Groups[2].Success;
-                Console.WriteLine(match.Groups[2].Value);
-                var lower = lowerExists ? int.Parse(match.Groups[2].Value) : 0;
-
-                var upperExists = match.Groups[3].Success;
-                var upper = upperExists ? int.Parse(match.Groups[3].Value) : 0;
-
-                switch (key)
-                {
-                    case "Id":
-                        Id = new IntRequirement(lower, upper);
-                        break;
-                }
-            }
-            catch
-            {
-            }
+        
     }
 
 
     public bool Check(Patient patient)
     {
-        if (!Id.Check(patient.Id)) return false;
+        if (!Id.Check(patient.Id.ToString())) return false;
         if (!FirstName.Check(patient.FirstName)) return false;
         if (!LastName.Check(patient.LastName)) return false;
         if (!PESEL.Check(patient.PESEL)) return false;
@@ -126,40 +104,6 @@ internal class SearchRequirements
 
 
 
-
-internal class IntRequirement
-{
-    public IntRequirement(int lower, int upper)
-    {
-        Lower = lower;
-        Upper = upper;
-        LowerExists = 1;
-        UpperExists = 1;
-    }
-
-    public IntRequirement()
-    {
-        LowerExists = 0;
-        UpperExists = 0;
-
-        Lower = 0;
-        Upper = 0;
-    }
-
-    public int LowerExists { get; set; }
-    public int Lower { get; set; }
-    public int UpperExists { get; set; }
-    public int Upper { get; set; }
-
-    public bool Check(int value)
-    {
-        if (LowerExists == 1 && value < Lower) return false;
-
-        if (UpperExists == 1 && value > Upper) return false;
-
-        return true;
-    }
-}
 
 internal class StringRequirement
 {
