@@ -5,7 +5,7 @@ namespace MedicalClinic.Core;
 
 public class PatientLogic
 {
-    internal static void AddRandomPatientPrompt()
+    internal static void AddRandomPatient()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         const string numbers = "0123456789";
@@ -20,34 +20,31 @@ public class PatientLogic
 
         DbHandler.Create(patient);
     }
-
-}
-
-
-
-public class PatientEdit
-{
-    internal Patient Patient { get; }
-    internal Patient Other { get; }
-
-    public PatientEdit(Patient patient, Patient other)
-    {
-        Patient = patient;
-        Other = other;
-        Edit();
-    }
     
-    public Patient Edit()
+    internal static void AddPatient(Patient patient)
     {
-        Patient.FirstName = Other.FirstName ?? Patient.FirstName;
-        Patient.LastName = Other.LastName ?? Patient.LastName;
-        Patient.PESEL = Other.PESEL ?? Patient.PESEL;
-        Patient.Email = Other.Email ?? Patient.Email;
-        Patient.City = Other.City ?? Patient.City;
-        Patient.Street = Other.Street ?? Patient.Street;
-        Patient.ZipCode = Other.ZipCode ?? Patient.ZipCode;
+        DbHandler.Create(patient);
+    }
+
+    internal static void EditPatient(int id, String firstName, String lastName, String pesel, String email, String city,
+        String street, String zipCode)
+    {
+        // loop through each if not "" then set to new value, if "" then keep old value
+        var patient = DbHandler.Get<Patient>(id);
+        patient.FirstName = firstName != "" ? firstName : patient.FirstName;
+        patient.LastName = lastName != "" ? lastName : patient.LastName;
+        patient.PESEL = pesel != "" ? pesel : patient.PESEL;
+        patient.Email = email != "" ? email : patient.Email;
+        patient.City = city != "" ? city : patient.City;
+        patient.Street = street != "" ? street : patient.Street;
+        patient.ZipCode = zipCode != "" ? zipCode : patient.ZipCode;
         
-        return Patient;
+        DbHandler.Update(patient);
     }
     
+
+    // DbHandler.Update(patient);
+        
+    
+
 }

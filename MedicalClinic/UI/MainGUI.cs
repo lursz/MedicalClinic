@@ -27,13 +27,13 @@ namespace MedicalClinic
             buttonHelp2.Clicked += () => MessageBox.ErrorQuery("Help", "Search functionality is based on regex. You can search for specific values in columns by typing: key:{value}. For example: FirstName:{John} PESEL:{[0-9]{11}}", "Ok");
             buttonAdd.Clicked += () =>
             {
-                var addPatient = new PatientAdd();
-                addPatient.ShowDialog();
+                var addDialog = new AddDialog();
+                addDialog.ShowDialog();
                 PrintTable(DbHandler.GetPatients());
             };
             buttonAddRandom.Clicked += () =>
             {
-                PatientLogic.AddRandomPatientPrompt();
+                PatientLogic.AddRandomPatient();
                 PrintTable(DbHandler.GetPatients());
             };
             buttonRemoveAll.Clicked += () =>
@@ -60,8 +60,9 @@ namespace MedicalClinic
                 if (dialog == 0)
                 {
                     // Edit
-                    var editPatient = new PatientEdit(selectedPatient, selectedPatient);
-                    // editPatient.ShowDialog();
+                    var id = int.Parse(patientList.Table.Rows[args.NewRow][0].ToString());
+                    var editDialog = new EditDialog(id);
+                    editDialog.ShowDialog(selectedPatient);
                     PrintTable(DbHandler.GetPatients());
                 }
                 else if (dialog == 1)

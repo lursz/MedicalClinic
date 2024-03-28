@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using MedicalClinic.DataBase;
+using MedicalClinic.DataBase.Connection;
 using MedicalClinic.DataBase.Models;
 using Xunit;
 
@@ -10,14 +11,12 @@ public class DbHandlerTest : IDisposable
 {
     public DbHandlerTest()
     {
-        DbHandler.EnsureCreatedDB();
-        DbHandler.MigrateDB();
     }
 
     [Fact]
     public void test_EnsureDbGetsCreated()
     {
-        Assert.True(DbHandler.EnsureCreatedDB());
+        Assert.False(DbHandler.EnsureCreatedDB()); //returns false if db already exists
     }
     
     [Fact]

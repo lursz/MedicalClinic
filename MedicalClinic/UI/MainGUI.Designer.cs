@@ -213,6 +213,7 @@ namespace MedicalClinic {
             this.patientList.X = 0;
             this.patientList.Y = 9;
             this.patientList.Visible = true;
+            this.patientList.ColorScheme = this.tgDefault;
             this.patientList.Data = "patientList";
             this.patientList.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.patientList.FullRowSelect = true;

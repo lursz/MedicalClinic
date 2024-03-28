@@ -14,7 +14,6 @@ public class Patient
     public Patient(string firstName, string lastName, string pesel, string email, string city, string street,
         string zipCode)
     {
-        // Id = id;
         FirstName = firstName;
         LastName = lastName;
         PESEL = checkPESEL(pesel) ? pesel : throw new ArgumentException("Invalid PESEL format");
