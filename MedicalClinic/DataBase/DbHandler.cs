@@ -13,9 +13,9 @@ public static class DbHandler
         _context.Database.Migrate();
     }
 
-    public static void EnsureCreatedDB()
+    public static bool EnsureCreatedDB()
     {
-        _context.Database.EnsureCreated();
+        return _context.Database.EnsureCreated();
     }
 
     public static void Create<T>(T obj) where T : class
