@@ -61,11 +61,27 @@ public class DbHandlerTest : IDisposable
         Assert.DoesNotContain(testPatient, DbHandler.GetPatients());
     }
         
+    [Fact]
+    public void test_Get()
+    {
+        var testPatient = new Patient("Get", "Me", "12009998123", "GetMe@gmail.com", "Warsaw", "Marszalkowska", "00-000");
+        DbHandler.Create(testPatient);
+        var testPatientFromDb = DbHandler.Get<Patient>(testPatient.Id);
+        Assert.Equal(testPatient, testPatientFromDb);
+    }
+    
+    [Fact]
+    public void test_Clear()
+    {
+        var testPatient = new Patient("Clear", "Me", "12009978123", "ClearMe@gmail.com", "Warsaw", "Marszalkowska", "00-000");
+        DbHandler.Create(testPatient);
+        DbHandler.Clear();
+        Assert.Empty(DbHandler.GetPatients());
+    }
 
 
-
-
-
-
-    public void Dispose() {}
+    public void Dispose()
+    {
+        DbHandler.Clear();
+    }
 }
