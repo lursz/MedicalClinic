@@ -12,10 +12,10 @@ public static class PatientLogic
 
         Random random = new();
         var randomName = new string(Enumerable.Repeat(chars, 10).Select(s => s[random.Next(s.Length)]).ToArray());
-        var randomEmail = new string(Enumerable.Repeat(chars, 10).Select(s => s[random.Next(s.Length)]).ToArray());
+        var randomEmail = new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
         var randomNumbers =
             new string(Enumerable.Repeat(numbers, 11).Select(s => s[random.Next(s.Length)]).ToArray());
-        var patient = new Patient(randomName, randomName, randomNumbers, $"{randomEmail}@{randomEmail}.com", "city",
+        var patient = new Patient(randomName, randomName, randomNumbers, $"{randomEmail}@gmail.com", "city",
             "street", "12-456");
 
         DbHandler.Create(patient);
@@ -32,7 +32,7 @@ public static class PatientLogic
         var patient = DbHandler.Get<Patient>(id);
         patient.FirstName = firstName != "" ? firstName : patient.FirstName;
         patient.LastName = lastName != "" ? lastName : patient.LastName;
-        patient.PESEL = pesel != "" ? pesel : patient.PESEL;
+        patient.Pesel = pesel != "" ? pesel : patient.Pesel;
         patient.Email = email != "" ? email : patient.Email;
         patient.City = city != "" ? city : patient.City;
         patient.Street = street != "" ? street : patient.Street;

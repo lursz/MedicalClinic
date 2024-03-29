@@ -12,6 +12,7 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
+        // DbHandler.Clear();
         DbHandler.EnsureCreatedDB();
         DbHandler.MigrateDB();
         

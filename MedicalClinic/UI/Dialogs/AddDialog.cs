@@ -2,7 +2,7 @@ using MedicalClinic.DataBase;
 using MedicalClinic.DataBase.Models;
 using Terminal.Gui;
 
-namespace MedicalClinic.UI;
+namespace MedicalClinic.UI.Dialogs;
 
 class AddDialog : Dialog
 {
@@ -120,10 +120,9 @@ class AddDialog : Dialog
         
         Add(firstNameLabel, firstNameText, lastNameLabel, lastNameText, peselLabel, peselText, emailLabel, emailText, cityLabel, cityText, streetLabel, streetText, zipCodeLabel, zipCodeText, buttonAdd);
         
-        Console.WriteLine(peselText.Text.ToString());
         buttonAdd.Clicked += () =>
         {
-            var patient = new Patient(firstNameText.Text.ToString(), lastNameText.Text.ToString(), peselText.Text.ToString(), emailText.Text.ToString(), cityText.Text.ToString(), streetText.Text.ToString(), zipCodeText.Text.ToString());
+            var patient = new Patient(firstNameText.Text.ToString() ?? string.Empty, lastNameText.Text.ToString() ?? string.Empty, peselText.Text.ToString() ?? string.Empty, emailText.Text.ToString() ?? string.Empty, cityText.Text.ToString() ?? string.Empty, streetText.Text.ToString() ?? string.Empty, zipCodeText.Text.ToString() ?? string.Empty);
             DbHandler.Create(patient);
             Application.RequestStop();
         };

@@ -18,21 +18,8 @@ public class SearchSystem
     }
 }
 
-
-
-internal class SearchRequirements
+public class SearchRequirements
 {
-    private StringRequirement Id { get; } = new();
-    private StringRequirement FirstName { get; } = new();
-    private StringRequirement LastName { get; } = new();
-    private StringRequirement PESEL { get; } = new();
-    private StringRequirement Gender { get; } = new();
-    private StringRequirement Email { get; } = new();
-    private StringRequirement City { get; } = new();
-    private StringRequirement Street { get; } = new();
-    private StringRequirement ZipCode { get; } = new();
-    
-    
     public SearchRequirements(string query)
     {
         // Format: string_key1:{regex1} int_key1:lower{lower1}:upper{upper1} string_key2:{regex2}
@@ -82,8 +69,17 @@ internal class SearchRequirements
             catch
             {
             }
-        
     }
+
+    private StringRequirement Id { get; } = new();
+    private StringRequirement FirstName { get; } = new();
+    private StringRequirement LastName { get; } = new();
+    private StringRequirement PESEL { get; } = new();
+    private StringRequirement Gender { get; } = new();
+    private StringRequirement Email { get; } = new();
+    private StringRequirement City { get; } = new();
+    private StringRequirement Street { get; } = new();
+    private StringRequirement ZipCode { get; } = new();
 
 
     public bool Check(Patient patient)
@@ -91,7 +87,7 @@ internal class SearchRequirements
         if (!Id.Check(patient.Id.ToString())) return false;
         if (!FirstName.Check(patient.FirstName)) return false;
         if (!LastName.Check(patient.LastName)) return false;
-        if (!PESEL.Check(patient.PESEL)) return false;
+        if (!PESEL.Check(patient.Pesel)) return false;
         if (!Gender.Check(patient.Gender)) return false;
         if (!Email.Check(patient.Email)) return false;
         if (!City.Check(patient.City)) return false;
@@ -101,9 +97,6 @@ internal class SearchRequirements
         return true;
     }
 }
-
-
-
 
 internal class StringRequirement
 {
@@ -129,4 +122,3 @@ internal class StringRequirement
         return regex.IsMatch(value);
     }
 }
-

@@ -5,6 +5,7 @@
 */.idea/
 *.sln
 .vs/
+*/Folder.DotSettings.user
 # Build results
 */[Dd]ebug/
 */[Rr]elease/

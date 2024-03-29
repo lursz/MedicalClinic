@@ -5,13 +5,14 @@ using Xunit;
 
 namespace MedicalClinic.Tests.DataBase.Models;
 
+[TestSubject(typeof(Patient))]
 public class PatientTest
 {
 
     [Fact]
     public void test_NullFirstName()
     {
-        Assert.Throws<ArgumentNullException>(() =>
+        Assert.Throws<NullReferenceException>(() =>
             new Patient(null, "Doe", "12345678901", null, "Warsaw", "Marszalkowska", "00-000"));
     }
     

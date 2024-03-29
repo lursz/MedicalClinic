@@ -7,6 +7,7 @@ using Xunit;
 
 namespace MedicalClinic.Tests.DataBase;
 
+[TestSubject(typeof(DbHandler))]
 public class DbHandlerTest : IDisposable
 {
     public DbHandlerTest()
@@ -28,8 +29,8 @@ public class DbHandlerTest : IDisposable
         DbHandler.Create(testPatient1);
         DbHandler.Create(testPatient2);
         
-        var testPatient1FromDb = DbHandler.GetPatients().Find(p => p.PESEL == "12345678901");
-        var testPatient2FromDb = DbHandler.GetPatients().Find(p => p.PESEL == "12345678123");
+        var testPatient1FromDb = DbHandler.GetPatients().Find(p => p.Pesel == "12345678901");
+        var testPatient2FromDb = DbHandler.GetPatients().Find(p => p.Pesel == "12345678123");
         
         Assert.Equal(testPatient1, testPatient1FromDb);
         Assert.Equal(testPatient2, testPatient2FromDb);
@@ -46,7 +47,7 @@ public class DbHandlerTest : IDisposable
         testPatient.LastName = "Smith";
         DbHandler.Update(testPatient);
 
-        var testPatientFromDb = DbHandler.GetPatients().Find(p => p.PESEL == "12444478123");
+        var testPatientFromDb = DbHandler.GetPatients().Find(p => p.Pesel == "12444478123");
         Assert.Equal("Adam", testPatientFromDb.FirstName);
         Assert.Equal("Smith", testPatientFromDb.LastName);
     }

@@ -43,9 +43,7 @@ public static class DbHandler
 
     public static void Clear()
     {
-        var listOfPatients = _context.Patients.ToList();
-        _context.Patients.RemoveRange(listOfPatients);
-        _context.SaveChanges();
+        _context.Database.EnsureDeleted();
     }
 
     public static List<int> GetAllIds()
@@ -56,6 +54,11 @@ public static class DbHandler
     public static List<Patient> GetPatients()
     {
         return _context.Patients.ToList();
+    }
+    
+    public static void ExecuteSql(string sql)
+    {
+        _context.Database.ExecuteSqlRaw(sql);
     }
     
 }

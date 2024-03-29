@@ -78,7 +78,7 @@ namespace MedicalClinic.UI
         {
             var dataTable = new DataTable();
 
-            foreach (var columnName in Patient.returnNamesOfAllColumns())
+            foreach (var columnName in Patient.ReturnNamesOfAllColumns())
             {
                 var col = new DataColumn();
                 col.ColumnName = columnName;
@@ -89,7 +89,7 @@ namespace MedicalClinic.UI
             {
                 dataTable.Rows.Add(new object[]
                 {
-                    patient.Id, patient.FirstName, patient.LastName, patient.PESEL, patient.Gender, patient.Email,
+                    patient.Id, patient.FirstName, patient.LastName, patient.Pesel, patient.Gender, patient.Email,
                     patient.City, patient.Street, patient.ZipCode
                 });
             }
