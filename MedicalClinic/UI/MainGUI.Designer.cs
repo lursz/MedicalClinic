@@ -8,11 +8,10 @@
 //      the code is regenerated.
 //  </auto-generated>
 // -----------------------------------------------------------------------------
-namespace MedicalClinic {
-    using System;
-    using Terminal.Gui;
-    
-    
+
+using Terminal.Gui;
+
+namespace MedicalClinic.UI {
     public partial class MainGUI : Terminal.Gui.Window {
         
         private Terminal.Gui.ColorScheme tgDefault;

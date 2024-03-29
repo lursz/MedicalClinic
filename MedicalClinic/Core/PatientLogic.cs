@@ -3,7 +3,7 @@ using MedicalClinic.DataBase.Models;
 
 namespace MedicalClinic.Core;
 
-public class PatientLogic
+public static class PatientLogic
 {
     internal static void AddRandomPatient()
     {
@@ -39,6 +39,14 @@ public class PatientLogic
         patient.ZipCode = zipCode != "" ? zipCode : patient.ZipCode;
         
         DbHandler.Update(patient);
+    }
+
+    internal static void AddFewGuys()
+    {
+        DbHandler.Create(new Patient("John", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
+        DbHandler.Create(new Patient("Fred", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
+        DbHandler.Create(new Patient("Barny", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
+        DbHandler.Create(new Patient("Wilson", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
     }
     
 

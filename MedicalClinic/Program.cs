@@ -14,21 +14,9 @@ internal static class Program
     {
         DbHandler.EnsureCreatedDB();
         DbHandler.MigrateDB();
-        // DbHandler.Create(new Patient("John", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
-        // DbHandler.Create(new Patient("Fred", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
-        // DbHandler.Create(new Patient("Barny", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
-        // DbHandler.Create(new Patient("Wilson", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));
-
+        
         Application.Init();
         Application.Run(new MainGUI());
         Application.Shutdown();
-        
-        // Application.Run<MainWindow> ();
-        // System.Console.WriteLine ($"Username: {((MainWindow)Application.Top).usernameText.Text}");
-        // // Before the application exits, reset Terminal.Gui for clean shutdown
-        // Application.Shutdown ();
-   
-        
-        
     }
 }

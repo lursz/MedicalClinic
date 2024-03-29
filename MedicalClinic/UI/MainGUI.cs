@@ -2,10 +2,10 @@ using System.Data;
 using MedicalClinic.Core;
 using MedicalClinic.DataBase;
 using MedicalClinic.DataBase.Models;
-using MedicalClinic.UI;
+using MedicalClinic.UI.Dialogs;
 using Terminal.Gui;
 
-namespace MedicalClinic
+namespace MedicalClinic.UI
 {
 
 

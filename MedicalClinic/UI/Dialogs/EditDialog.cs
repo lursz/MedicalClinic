@@ -2,7 +2,7 @@ using MedicalClinic.Core;
 using MedicalClinic.DataBase.Models;
 using Terminal.Gui;
 
-namespace MedicalClinic.UI;
+namespace MedicalClinic.UI.Dialogs;
 
 public class EditDialog : Dialog
 {
@@ -119,7 +119,7 @@ public class EditDialog : Dialog
 
         saveButton.Clicked += () =>
         {
-            PatientLogic.EditPatient(id, firstNameText.Text.ToString(), lastNameText.Text.ToString(), peselText.Text.ToString(), emailText.Text.ToString(), cityText.Text.ToString(), streetText.Text.ToString(), zipCodeText.Text.ToString());
+            PatientLogic.EditPatient(id, firstNameText.Text.ToString() ?? string.Empty, lastNameText.Text.ToString() ?? string.Empty, peselText.Text.ToString() ?? string.Empty, emailText.Text.ToString() ?? string.Empty, cityText.Text.ToString() ?? string.Empty, streetText.Text.ToString() ?? string.Empty, zipCodeText.Text.ToString() ?? string.Empty);
             Application.RequestStop();
         };
         
