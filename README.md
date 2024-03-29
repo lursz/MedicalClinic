@@ -16,11 +16,11 @@ This project is an interview assignment for Esatto Poland. The main goal, obviou
 ## Run
 In order to run the project, you must have [Docker](https://www.docker.com/products/docker-desktop/) (with Docker Compose) and [.NET 8.0](https://dotnet.microsoft.com/en-us/download) 
 installed on your machine.  
-First, you need to create the database. You can provide your own or use Docker to create them. To do the latter, run following command in the `/Docker` directory:
+First, you need to create the database. You can provide your own or use Docker to create it. To do the latter, run following command in the `/Docker` directory:
 ```bash
 docker-compose up
 ```
-With the databases up and running, you can now run the Load Balancer. To do so, navigate to the `/MedicalClinic` directory and run the project
+With the database up and running, you can now run the Medical Clinic. To do so, navigate to the `/MedicalClinic` directory and run the project
 ```bash
 dotnet run
 ```
