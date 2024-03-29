@@ -1,28 +1,32 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using Terminal.Gui;
 
 namespace MedicalClinic.DataBase.Models;
 
 public class Patient
 {
-    public Patient()
-    {
-    }
-
-
+    
     public Patient(string firstName, string lastName, string pesel, string email, string city, string street,
         string zipCode)
     {
-        // Id = id;
+        if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(pesel) ||
+            string.IsNullOrEmpty(email) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(street) ||
+            string.IsNullOrEmpty(zipCode))
+        {
+            MessageBox.ErrorQuery("Null fields", "Some fields are nulls", "Ok");
+            return;
+        }
+        
         FirstName = firstName;
         LastName = lastName;
-        PESEL = checkPESEL(pesel) ? pesel : throw new ArgumentException("Invalid PESEL format");
-        Email = checkEmail(email) ? email : throw new ArgumentException("Invalid email format");
+        Pesel = CheckPesel(pesel) ? pesel : throw new ArgumentException("Invalid PESEL format");
+        Email = CheckEmail(email) ? email : throw new ArgumentException("Invalid email format");
         City = city;
         Street = street;
-        ZipCode = checkZipCode(zipCode) ? zipCode : throw new ArgumentException("Invalid zip code format");
-        Gender = PESEL[10] % 2 == 0 ? 'F' : 'M';
+        ZipCode = CheckZipCode(zipCode) ? zipCode : throw new ArgumentException("Invalid zip code format");
+        Gender = Pesel[9] % 2 == 0 ? "Female" : "Male";
     }
 
     [Key]
@@ -33,9 +37,9 @@ public class Patient
 
     [Required] public string LastName { get; set; }
 
-    [Required] public string PESEL { get; set; }
+    [Required] public string Pesel { get; set; }
 
-    public char Gender { get; set; }
+    public string Gender { get; set; }
 
     [Required] public string Email { get; set; }
 
@@ -49,24 +53,36 @@ public class Patient
     public override string ToString()
     {
         return
-            $"Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, PESEL: {PESEL}, Gender: {Gender}, Email: {Email}, City: {City}, Street: {Street}, ZipCode: {ZipCode}";
+            $"Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, PESEL: {Pesel}, Gender: {Gender}, Email: {Email}, City: {City}, Street: {Street}, ZipCode: {ZipCode}";
     }
 
-    private bool checkZipCode(string zipCode)
+    public string ToNewLineString()
+    {
+        return
+            $"Id: {Id}\nFirstName: {FirstName}\nLastName: {LastName}\nPESEL: {Pesel}\nGender {Gender} \nEmail: {Email}\nCity: {City}\nStreet: {Street}\nZipCode: {ZipCode}";
+    }
+
+    private bool CheckZipCode(string zipCode)
     {
         var pattern = @"^\d{2}-\d{3}$";
         return Regex.IsMatch(zipCode, pattern);
     }
 
-    private bool checkPESEL(string pesel)
+    private bool CheckPesel(string pesel)
     {
         var pattern = @"^\d{11}$";
         return Regex.IsMatch(pesel, pattern);
     }
 
-    private bool checkEmail(string email)
+    private bool CheckEmail(string email)
     {
         var pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
         return Regex.IsMatch(email, pattern);
+    }
+    
+    public static List<String> ReturnNamesOfAllColumns()
+    {
+        return new List<string>
+            { "Id", "FirstName", "LastName ", "PESEL", "Gender", "Email", "City", "Street", "ZipCode" };
     }
 }

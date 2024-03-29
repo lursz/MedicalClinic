@@ -1,4 +1,5 @@
 using MedicalClinic.DataBase.Connection;
+using MedicalClinic.DataBase.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalClinic.DataBase;
@@ -12,9 +13,9 @@ public static class DbHandler
         _context.Database.Migrate();
     }
 
-    public static void EnsureCreatedDB()
+    public static bool EnsureCreatedDB()
     {
-        _context.Database.EnsureCreated();
+        return _context.Database.EnsureCreated();
     }
 
     public static void Create<T>(T obj) where T : class
@@ -43,11 +44,21 @@ public static class DbHandler
     public static void Clear()
     {
         _context.Database.EnsureDeleted();
-        _context.Database.EnsureCreated();
     }
 
     public static List<int> GetAllIds()
     {
         return _context.Patients.Select(p => p.Id).ToList();
     }
+    
+    public static List<Patient> GetPatients()
+    {
+        return _context.Patients.ToList();
+    }
+    
+    public static void ExecuteSql(string sql)
+    {
+        _context.Database.ExecuteSqlRaw(sql);
+    }
+    
 }
