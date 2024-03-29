@@ -15,6 +15,7 @@ internal static class Program
         // DbHandler.Clear();
         DbHandler.EnsureCreatedDB();
         DbHandler.MigrateDB();
+        PatientLogic.AddFewGuys();
         
         Application.Init();
         Application.Run(new MainGUI());

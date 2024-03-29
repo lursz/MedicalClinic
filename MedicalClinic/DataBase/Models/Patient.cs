@@ -26,7 +26,7 @@ public class Patient
         City = city;
         Street = street;
         ZipCode = CheckZipCode(zipCode) ? zipCode : throw new ArgumentException("Invalid zip code format");
-        Gender = Pesel[10] % 2 == 0 ? "Female" : "Male";
+        Gender = Pesel[9] % 2 == 0 ? "Female" : "Male";
     }
 
     [Key]

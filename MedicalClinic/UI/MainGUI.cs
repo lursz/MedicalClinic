@@ -23,8 +23,8 @@ namespace MedicalClinic.UI
             
             // Buttons
             buttonQuit.Clicked += () => Application.RequestStop();
-            buttonHelp.Clicked += () => MessageBox.ErrorQuery("Help", "This is a simple medical clinic app in retro style. App fully supports both mouse and keyboard and runs smoothly on literally any device", "Ok");
-            buttonHelp2.Clicked += () => MessageBox.ErrorQuery("Help", "Search functionality is based on regex. You can search for specific values in columns by typing: key:{value}. For example: FirstName:{John} PESEL:{[0-9]{11}}", "Ok");
+            buttonHelp.Clicked += () => MessageBox.ErrorQuery("Help", "This is a simple medical clinic app in retro style. App was built in .NET 8, fully supports both mouse and keyboard and runs on Windows and Unix (Mac/Linux).", "Ok");
+            buttonHelp2.Clicked += () => MessageBox.ErrorQuery("Help", "Search functionality is based on regex. You can search for specific values in columns by typing: key:{value}. \nFor instance: FirstName:{John}", "Ok");
             buttonAdd.Clicked += () =>
             {
                 var addDialog = new AddDialog();
