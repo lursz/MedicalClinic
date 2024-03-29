@@ -8,9 +8,11 @@ class AddDialog : Dialog
 {
     public AddDialog()
     {
-        Title = "Add patient";
+        Title = "Add patient (all fields are required)";
         X = Pos.Center();
         Y = Pos.Center();
+        Width = 50;
+        Height = 20;
         
         var firstNameLabel = new Label()
         {

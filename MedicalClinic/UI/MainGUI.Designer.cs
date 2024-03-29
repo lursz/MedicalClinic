@@ -45,13 +45,10 @@ namespace MedicalClinic {
         
         private Terminal.Gui.Button buttonAddRandom;
         
-        private Terminal.Gui.Button buttonRemoveAll;
-        
         private Terminal.Gui.TableView patientList;
         
         private void InitializeComponent() {
             this.patientList = new Terminal.Gui.TableView();
-            this.buttonRemoveAll = new Terminal.Gui.Button();
             this.buttonAddRandom = new Terminal.Gui.Button();
             this.buttonAdd = new Terminal.Gui.Button();
             this.label_PatientList2 = new Terminal.Gui.Label();
@@ -198,16 +195,6 @@ namespace MedicalClinic {
             this.buttonAddRandom.TextAlignment = Terminal.Gui.TextAlignment.Centered;
             this.buttonAddRandom.IsDefault = false;
             this.Add(this.buttonAddRandom);
-            this.buttonRemoveAll.Width = 14;
-            this.buttonRemoveAll.Height = 1;
-            this.buttonRemoveAll.X = 26;
-            this.buttonRemoveAll.Y = 8;
-            this.buttonRemoveAll.Visible = true;
-            this.buttonRemoveAll.Data = "buttonRemoveAll";
-            this.buttonRemoveAll.Text = "Remove all";
-            this.buttonRemoveAll.TextAlignment = Terminal.Gui.TextAlignment.Centered;
-            this.buttonRemoveAll.IsDefault = false;
-            this.Add(this.buttonRemoveAll);
             this.patientList.Width = Dim.Percent(100f);
             this.patientList.Height = Dim.Percent(85f);
             this.patientList.X = 0;

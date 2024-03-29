@@ -36,11 +36,7 @@ namespace MedicalClinic
                 PatientLogic.AddRandomPatient();
                 PrintTable(DbHandler.GetPatients());
             };
-            buttonRemoveAll.Clicked += () =>
-            {
-                DbHandler.Clear();
-                PrintTable(DbHandler.GetPatients());
-            };
+
 
             
             // searchBar
@@ -55,21 +51,24 @@ namespace MedicalClinic
             patientList.SelectedCellChanged += (args) =>
             {
                 var selectedPatient = DbHandler.Get<Patient>(int.Parse(patientList.Table.Rows[args.NewRow][0].ToString()));
-                // show prompt with buttons to delete and edit  
+                
                 var dialog = MessageBox.Query(50, 10, "Patient details", selectedPatient.ToNewLineString(), "Edit", "Delete", "Cancel");
-                if (dialog == 0)
+                switch (dialog)
                 {
-                    // Edit
-                    var id = int.Parse(patientList.Table.Rows[args.NewRow][0].ToString());
-                    var editDialog = new EditDialog(id);
-                    editDialog.ShowDialog(selectedPatient);
-                    PrintTable(DbHandler.GetPatients());
-                }
-                else if (dialog == 1)
-                {
-                    // Delete
-                    DbHandler.Delete(selectedPatient);
-                    PrintTable(DbHandler.GetPatients());
+                    case 0:
+                    {
+                        // Edit
+                        var id = int.Parse(patientList.Table.Rows[args.NewRow][0].ToString());
+                        var editDialog = new EditDialog(id);
+                        editDialog.ShowDialog(selectedPatient);
+                        PrintTable(DbHandler.GetPatients());
+                        break;
+                    }
+                    case 1:
+                        // Delete
+                        DbHandler.Delete(selectedPatient);
+                        PrintTable(DbHandler.GetPatients());
+                        break;
                 }
             };
         }

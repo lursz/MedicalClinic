@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using Terminal.Gui;
 
 namespace MedicalClinic.DataBase.Models;
 
@@ -14,6 +15,14 @@ public class Patient
     public Patient(string firstName, string lastName, string pesel, string email, string city, string street,
         string zipCode)
     {
+        if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(pesel) ||
+            string.IsNullOrEmpty(email) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(street) ||
+            string.IsNullOrEmpty(zipCode))
+        {
+            MessageBox.ErrorQuery("Null fields", "Some fields are nulls", "Ok");
+            return;
+        }
+        
         FirstName = firstName;
         LastName = lastName;
         PESEL = checkPESEL(pesel) ? pesel : throw new ArgumentException("Invalid PESEL format");

@@ -12,8 +12,6 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
-        // var context = new Context(ConnString.DbConnectionString);
-        // DbHandler.Clear();
         DbHandler.EnsureCreatedDB();
         DbHandler.MigrateDB();
         // DbHandler.Create(new Patient("John", "Doe", "12345678901", "easd@sdd.com", "Warsaw", "Marszalkowska", "00-000"));

@@ -29,7 +29,6 @@ public class PatientLogic
     internal static void EditPatient(int id, String firstName, String lastName, String pesel, String email, String city,
         String street, String zipCode)
     {
-        // loop through each if not "" then set to new value, if "" then keep old value
         var patient = DbHandler.Get<Patient>(id);
         patient.FirstName = firstName != "" ? firstName : patient.FirstName;
         patient.LastName = lastName != "" ? lastName : patient.LastName;
@@ -41,10 +40,6 @@ public class PatientLogic
         
         DbHandler.Update(patient);
     }
-    
-
-    // DbHandler.Update(patient);
-        
     
 
 }

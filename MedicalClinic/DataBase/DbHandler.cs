@@ -43,8 +43,9 @@ public static class DbHandler
 
     public static void Clear()
     {
-        _context.Database.EnsureDeleted();
-        _context.Database.EnsureCreated();
+        var listOfPatients = _context.Patients.ToList();
+        _context.Patients.RemoveRange(listOfPatients);
+        _context.SaveChanges();
     }
 
     public static List<int> GetAllIds()

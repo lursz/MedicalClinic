@@ -19,7 +19,6 @@ public class EditDialog : Dialog
         
         var firstNameText = new TextField("")
         {
-            // Position text field adjacent to the label
             X = Pos.Right(firstNameLabel) + 1,
             Width = Dim.Fill(),
         };
@@ -117,7 +116,6 @@ public class EditDialog : Dialog
         };
         
         Add(firstNameLabel, firstNameText, lastNameLabel, lastNameText, peselLabel, peselText, emailLabel, emailText, cityLabel, cityText, streetLabel, streetText, zipCodeLabel, zipCodeText, saveButton);
-        Console.WriteLine(peselText.Text.ToString());
 
         saveButton.Clicked += () =>
         {
