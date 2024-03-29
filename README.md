@@ -36,15 +36,16 @@ dotnet run
 ## Chosen functionalities
 
 #### Add new patient
-
+![addNew](https://github.com/lursz/MedicalClinic/assets/93160829/aca85fe0-3cf3-4306-b44c-b45370c1dc23)
 
 #### Edit patient
-
+![edit](https://github.com/lursz/MedicalClinic/assets/93160829/437fea6f-9a20-4a1e-a934-c76f6507976c)
 
 #### Remove patient
-
+![remove](https://github.com/lursz/MedicalClinic/assets/93160829/59dd303e-8fb0-4efd-94be-919004d24025)
 
 #### Search
-
+![search](https://github.com/lursz/MedicalClinic/assets/93160829/f200db99-831d-4af5-9a34-63984d274779)
 
 #### GUI Interface
+![freedomofmovement61](https://github.com/lursz/MedicalClinic/assets/93160829/3e122ec2-a43d-44a8-b0e9-6689df2d4992)
